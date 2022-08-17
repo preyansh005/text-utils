@@ -25,8 +25,7 @@ export default function TextForm(props) {
   };
 
   const copyToClipboard = () => {
-    let msg = text
-    navigator.clipboard.writeText(msg)
+    navigator.clipboard.writeText(text)
   };
 
   const change = (event) => {
