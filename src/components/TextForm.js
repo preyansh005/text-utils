@@ -11,6 +11,24 @@ export default function TextForm(props) {
     setText(newText);
   };
 
+  const clickClear = () => {
+    // if(confirm("Are you sure?")){
+      let newText = "";
+      setText(newText);
+    // }
+  };
+
+  const speak = () => {
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = text
+    window.speechSynthesis.speak(msg)
+  };
+
+  const copyToClipboard = () => {
+    let msg = text
+    navigator.clipboard.writeText(msg)
+  };
+
   const change = (event) => {
     setText(event.target.value);
   };
@@ -31,10 +49,19 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <button onClick={clickUpper} className="btn btn-primary">
-          Convert To Upper-Case
+          To Upper-Case
         </button>
         <button onClick={clickLower} className="btn btn-primary mx-3">
-          Convert To Lower-Case
+          To Lower-Case
+        </button>
+        <button onClick={clickClear} className="btn btn-danger">
+          Clear
+        </button>
+        <button onClick={speak} className="btn btn-primary mx-3">
+          Speak
+        </button>
+        <button onClick={copyToClipboard} className="btn btn-primary">
+          Copy To Clipboard
         </button>
       </div>
 
