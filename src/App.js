@@ -1,30 +1,44 @@
 import "./App.css";
-import {useState} from 'react'
+import { useState } from "react";
 // import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import Alert from "./components/Alert";
 
 function App() {
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState("light");
+  const [alert, setalert] = useState(null)
 
-  const toggleMode = ()=>{
-    if (mode === 'light'){
-      setMode('dark')
-      document.body.style.backgroundColor = '#343a40'
-      document.body.style.color = 'white'
-    }
-    else{
-      setMode('light')
-      document.body.style.backgroundColor = 'white'
-      document.body.style.color = '#343a40'
-    }
+  const showAlert = (message, type)=>{
+    setalert({
+      msg: message,
+      type: type
+    })
+    setTimeout(()=>{
+      setalert(null)
+    }, 1500)
   }
+
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#343a40";
+      document.body.style.color = "white";
+      showAlert("Dark Mode Enabled", "success")
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "#343a40";
+      showAlert("Light Mode Enabled", "success")
+    }
+  };
 
   return (
     <>
-      <Navbar title="Text Utils" mode={mode} toggleMode={toggleMode}/>
+      <Navbar title="Text Utils" mode={mode} toggleMode={toggleMode} />
       <div className="container my-3">
-        <TextForm heading="Enter The Text" mode={mode}/>
+        <Alert alert={alert} />
+        <TextForm heading="Enter The Text" mode={mode} showAlert={showAlert} />
         {/* <About /> */}
       </div>
     </>

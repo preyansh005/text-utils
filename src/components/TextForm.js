@@ -4,28 +4,33 @@ export default function TextForm(props) {
   const clickUpper = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Uppercase",'success')
   };
-
+  
   const clickLower = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase",'success')
   };
-
+  
   const clickClear = () => {
     // if(confirm("Are you sure?")){
       let newText = "";
       setText(newText);
-    // }
-  };
-
-  const speak = () => {
-    let msg = new SpeechSynthesisUtterance();
-    msg.text = text
-    window.speechSynthesis.speak(msg)
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(text)
+      props.showAlert("Text Area Cleared",'success')
+      // }
+    };
+    
+    const speak = () => {
+      let msg = new SpeechSynthesisUtterance();
+      msg.text = text
+      window.speechSynthesis.speak(msg)
+      props.showAlert("Speak the man",'success')
+    };
+    
+    const copyToClipboard = () => {
+      navigator.clipboard.writeText(text)
+      props.showAlert("Copy To Clipboard",'success')
   };
 
   const change = (event) => {
