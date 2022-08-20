@@ -45,6 +45,12 @@ export default function TextForm(props) {
             className="form-control"
             id="mybox"
             rows="5"
+            style={
+              {
+                backgroundColor: props.mode === 'light' ? 'white' : '#343a40',
+                color: props.mode === 'light' ? 'black' : 'white'
+              }
+            }
           ></textarea>
         </div>
         <button onClick={clickUpper} className="btn btn-primary">
@@ -69,7 +75,7 @@ export default function TextForm(props) {
         <p>{text.split(" ").length} words and {text.length} characters</p>
         <p>Approximately {0.01 * (text.split(" ").length)} minutes to read the text</p>
         <h3>Preview</h3>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter something to preview"}</p>
       </div>
     </>
   );
