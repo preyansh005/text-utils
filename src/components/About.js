@@ -1,34 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
-export default function About() {
-  const [myStyle, setmyStyle] = useState({
-    color: "white",
-    backgroundColor: "black",
-  });
-  const [btnText, setBtnText] = useState("Enable Light Mode")
-
-  const toggleStyle = () => {
-    if (myStyle.color == "white") {
-      setmyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode")
-    }
-    else{
-        setmyStyle({
-          color: "white",
-          backgroundColor: "black",
-        });
-        setBtnText("Enable Light Mode")
-    }
-  };
-
+export default function About(props) {
   return (
-    <div className="container" style={myStyle}>
+    <div className="container">
       <h1 className="my-3">About Us</h1>
       <div className="accordion" id="accordionExample">
-        <div className="accordion-item" style={myStyle}>
+        <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
               className="accordion-button"
@@ -59,7 +36,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="accordion-item" style={myStyle}>
+        <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
             <button
               className="accordion-button collapsed"
@@ -90,7 +67,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="accordion-item" style={myStyle}>
+        <div className="accordion-item">
           <h2 className="accordion-header" id="headingThree">
             <button
               className="accordion-button collapsed"
@@ -122,13 +99,6 @@ export default function About() {
           </div>
         </div>
       </div>
-      <button
-        onClick={toggleStyle}
-        type="button"
-        className="btn btn-primary my-3"
-      >
-        {btnText}
-      </button>
     </div>
   );
 }
